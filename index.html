@@ -19,7 +19,7 @@
         const { useState, useEffect } = React;
 
         // --- GANTI URL INI DENGAN URL WEBHOOK GOOGLE APP SCRIPT KAMU NANTI ---
-        const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycby6ZnUyaQdzh69jBoPJ9J-Zid5CqzwxoSct25tA2ZFtSDI1G2gbv1YoZy1tdpNjKYWIvA/exec";
+        const GOOGLE_SHEET_WEBHOOK_URL = "URL_APP_SCRIPT_KAMU_DISINI";
 
         // --- DATA KASUS PROGRESIF ---
         const LEVEL_DATA = [
@@ -64,7 +64,7 @@
                     { id: 403, productIcon: "Powder", productType: "Tisu Basah", packagingIcon: "Pouch", title: "Tisu 'Flushable'", description: "Lembaran tisu basah yang diklaim aman disiram ke kloset.", correctAnswer: "RESIDU", explanation: "Serat plastiknya nggak hancur di air dan malah bikin mampet gorong-gorong kota hingga menjadi gumpalan 'fatberg'." },
                     { id: 404, productIcon: "Cream", productType: "Krim Malam", packagingIcon: "Jar", title: "Toples Akrilik Tebal", description: "Plastik akrilik super tebal biar berat dan kelihatan kayak kaca kristal.", correctAnswer: "RESIDU", explanation: "Akrilik itu tergolong plastik keras yang nilai daur ulangnya rendah banget dan jarang banget diterima sama fasilias daur ulang." },
                     { id: 405, productIcon: "Cream", productType: "Cat Rambut", packagingIcon: "Canister", title: "Tube Amonia Cat Rambut", description: "Tube isi sisa krim pewarna rambut yang bau amonianya kuat.", correctAnswer: "B3", explanation: "Limbah sisa kimia kosmetik keras gini nggak bisa dipandang sebelah mata. Wajib dipisah ke tong merah B3 agar tidak cemari air tanah." },
-                    { id: 406, productIcon: "Cream", productType: "Hand Cream", packagingIcon: "Bottle", title: "Tube Plastik Monomaterial", description: "Tube lentur dari PE murni (satu jenis plastik doang) tanpa lapisan aluminium.", correctAnswer: "ANORGANIK", explanation: "Karena murni dibuat dari satu jenis plastik aja (monomaterial), material ini masih sangat bisa dicacah dan didaur ulang." }
+                    { id: 406, productIcon: "Cream", productType: "Hand Cream", packagingIcon: "Bottle", title: "Tube Plastik Monomaterial", description: "Tube lentur dari PE murni (satu jenis plastik doang) tanpa lapisan aluminium.", correctAnswer: "ANORGANIK", explanation: "Karena murni dibuat dari satu jenis plastik aja (monomaterial), material ini masih sangat bisa dicacah and didaur ulang." }
                 ]
             },
             {
@@ -466,6 +466,51 @@
                                         {submitStatus === 'ERROR' && (
                                             <p className="text-red-500 mt-3 font-bold text-sm">Gagal menyimpan skor. Coba lagi ya.</p>
                                         )}
+                                    </div>
+
+                                    {/* RESTORED: KESIMPULAN GEN-Z & KATEGORI SAMPAH */}
+                                    <div className="text-left bg-white rounded-[2rem] p-6 md:p-10 border-2 border-slate-200 mb-10 shadow-sm">
+                                        <h2 className="text-2xl sm:text-3xl font-black text-slate-800 mb-6 flex items-center tracking-tight">
+                                            <span className="text-4xl mr-3">☕</span> Spill the Tea: Realita Pabrik Sampah
+                                        </h2>
+
+                                        <div className="space-y-5 mb-8">
+                                            <div className="flex flex-col sm:flex-row bg-blue-50/50 p-5 rounded-2xl border-2 border-blue-100">
+                                                <span className="text-4xl mb-2 sm:mb-0 sm:mr-5">📄</span>
+                                                <div>
+                                                    <h3 className="font-black text-blue-800 text-xl mb-1 uppercase tracking-wide">Tong Biru (Kertas)</h3>
+                                                    <p className="text-base text-slate-600 leading-relaxed font-medium">Sirkular abis. Tapi <b>pantangan terbesarnya: Laminasi glossy/plastik</b>. Kertas kalau udah dilaminasi bakal di-reject pabrik karena nggak bisa lebur jadi bubur pulp.</p>
+                                                </div>
+                                            </div>
+                                            <div className="flex flex-col sm:flex-row bg-yellow-50/50 p-5 rounded-2xl border-2 border-yellow-100">
+                                                <span className="text-4xl mb-2 sm:mb-0 sm:mr-5">♻️</span>
+                                                <div>
+                                                    <h3 className="font-black text-yellow-800 text-xl mb-1 uppercase tracking-wide">Tong Kuning (Anorganik)</h3>
+                                                    <p className="text-base text-slate-600 leading-relaxed font-medium">Harta karunnya kang loak. Botol PET bening, kaca polos, aluminium murni. <b>Kuncinya: Monomaterial (cuma 1 jenis bahan) dan gampang dicuci.</b></p>
+                                                </div>
+                                            </div>
+                                            <div className="flex flex-col sm:flex-row bg-red-50/50 p-5 rounded-2xl border-2 border-red-100">
+                                                <span className="text-4xl mb-2 sm:mb-0 sm:mr-5">☠️</span>
+                                                <div>
+                                                    <h3 className="font-black text-red-800 text-xl mb-1 uppercase tracking-wide">Tong Merah (B3)</h3>
+                                                    <p className="text-base text-slate-600 leading-relaxed font-medium">Red flag zone. Kaleng aerosol bertekanan, sisa aseton/alkohol, atau bahan kimia keras. Wajib pisah tong biar <b>nggak meledak atau ngeracunin tanah.</b></p>
+                                                </div>
+                                            </div>
+                                            <div className="flex flex-col sm:flex-row bg-slate-100/50 p-5 rounded-2xl border-2 border-slate-200">
+                                                <span className="text-4xl mb-2 sm:mb-0 sm:mr-5">🗑️</span>
+                                                <div>
+                                                    <h3 className="font-black text-slate-700 text-xl mb-1 uppercase tracking-wide">Tong Abu-abu (Residu)</h3>
+                                                    <p className="text-base text-slate-600 leading-relaxed font-medium">Toxic trait industri: <b>Sachet & Multilayer</b>. Ukurannya terlalu kecil buat disortir mesin, atau plastiknya kecampur logam jadi mustahil dipisah. Fix numpuk di laut selamanya.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="bg-slate-900 text-emerald-50 p-6 rounded-2xl shadow-inner">
+                                            <h3 className="font-black text-lg mb-2 text-emerald-400">💡 Reminder buat Kamu</h3>
+                                            <p className="text-sm leading-relaxed opacity-90">
+                                                "Sekitar 80% dampak lingkungan dari sebuah produk itu ditentukan di tangan desainer pas lagi mikirin konsep. Jadilah desainer yang *mindful*. Bikin kemasan yang nggak cuma cantik pas di-<i>unboxing</i>, tapi juga mati dengan anggun (sirkular) pas dibuang."
+                                            </p>
+                                        </div>
                                     </div>
 
                                     <div className="flex flex-col sm:flex-row justify-center gap-5 mt-10">
